@@ -44,7 +44,8 @@
     "url": "https://github.com/dwillmer/phosphide-jupyter.git"
   },
   "files": [
-    "build/*"
+    "build/*",
+    "jupyter-js-services/*"
   ],
   "keywords": [
     "phosphide",
