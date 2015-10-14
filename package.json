@@ -2,8 +2,8 @@
   "name": "phosphide-jupyter",
   "version": "0.2.1",
   "description": "A Jupyter plugin for phosphide",
-  "main": "lib/index.js",
-  "typings": "lib/index.d.ts",
+  "main": "build/index.js",
+  "typings": "build/index.d.ts",
   "dependencies": {
     "phosphor-disposable": "^1.0.4",
     "phosphor-menus": "^0.9.5",
