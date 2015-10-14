@@ -1,0 +1,62 @@
+{
+  "name": "phosphide-jupyter",
+  "version": "0.2.1",
+  "description": "A Jupyter plugin for phosphide",
+  "main": "lib/index.js",
+  "typings": "lib/index.d.ts",
+  "dependencies": {
+    "phosphor-disposable": "^1.0.4",
+    "phosphor-menus": "^0.9.5",
+    "phosphor-widget": "^0.9.11",
+    "phosphide": "git+https://github.com/dwillmer/phosphide.git"
+  },
+  "devDependencies": {
+    "browserify": "^11.2.0",
+    "browserify-istanbul": "^0.2.1",
+    "coveralls": "^2.11.4",
+    "expect.js": "^0.3.1",
+    "glob-copy": "^0.1.0",
+    "istanbul": "^0.3.19",
+    "karma": "^0.13.9",
+    "karma-browserify": "^4.3.0",
+    "karma-chrome-launcher": "^0.2.0",
+    "karma-coverage": "^0.5.0",
+    "karma-firefox-launcher": "^0.1.6",
+    "karma-ie-launcher": "^0.2.0",
+    "karma-mocha": "^0.2.0",
+    "karma-mocha-reporter": "^1.1.1",
+    "mocha": "^2.2.5",
+    "rimraf": "^2.4.2",
+    "typedoc": "^0.3.11",
+    "typescript": "^1.6.2"
+  },
+  "scripts": {
+    "clean": "rimraf lib",
+    "build:css": "node scripts/copycss.js",
+    "build:src": "tsc --project src",
+    "build": "npm run build:src && npm run build:css",
+    "docs": "rimraf docs/api && typedoc --options scripts/tdoptions.json",
+    "prepublish": "npm run build",
+    "postinstall": "npm dedupe"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dwillmer/phosphide-jupyter.git"
+  },
+  "files": [
+    "lib/index.js",
+    "lib/index.d.ts",
+    "lib/index.css"
+  ],
+  "keywords": [
+    "phosphide",
+    "plugin",
+    "menu"
+  ],
+  "author": "Dave Willmer <dave.willmer@gmail.com>",
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/dwillmer/phosphide-jupyter/issues"
+  },
+  "homepage": "https://github.com/dwillmer/phosphide-jupyter"
+}
