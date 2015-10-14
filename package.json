@@ -45,7 +45,10 @@
   },
   "files": [
     "build/*",
-    "jupyter-js-services/*"
+    "jupyter-js-services/index.js",
+    "jupyter-js-services/config.js",
+    "jupyter-js-services/contents.js",
+    "jupyter-js-services/ikernel.js"
   ],
   "keywords": [
     "phosphide",
