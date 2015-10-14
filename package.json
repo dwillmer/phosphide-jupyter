@@ -46,6 +46,7 @@
   "files": [
     "build/*",
     "jupyter-js-services/index.js",
+    "jupyter-js-services/index.d.ts",
     "jupyter-js-services/config.js",
     "jupyter-js-services/contents.js",
     "jupyter-js-services/ikernel.js"
