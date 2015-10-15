@@ -31,6 +31,8 @@
     "ikernel.js",
     "index.d.ts",
     "index.js",
+    "kernel.d.ts",
+    "kernel.js",
     "isession.d.ts",
     "isession.js",
     "serialize.d.ts",
