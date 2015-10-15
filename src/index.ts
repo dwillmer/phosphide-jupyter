@@ -173,6 +173,10 @@ class JupyterNotebookPlugin {
       {
         pointName: 'menu.main',
         item: MenuItem.fromTemplate(JUPYTER_MENU_TEMPLATE)
+      },
+      {
+        pointName: 'dockarea.main',
+        item: newNotebook()
       }
     ];
   }

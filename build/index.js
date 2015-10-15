@@ -128,6 +128,10 @@ var JupyterNotebookPlugin = (function () {
             {
                 pointName: 'menu.main',
                 item: phosphor_menus_1.MenuItem.fromTemplate(JUPYTER_MENU_TEMPLATE)
+            },
+            {
+                pointName: 'dockarea.main',
+                item: newNotebook()
             }
         ];
     };
