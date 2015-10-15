@@ -9,7 +9,9 @@
     "phosphor-menus": "^0.9.5",
     "phosphor-widget": "^0.9.11",
     "phosphide": "git+https://github.com/dwillmer/phosphide.git",
-    "jupyter-js-output-area": "^0.0.5"
+    "jquery": "^2.1.4",
+    "jupyter-js-output-area": "^0.0.5",
+    "underscore": "^1.8.3"
   },
   "devDependencies": {
     "browserify": "^11.2.0",
@@ -18,7 +20,6 @@
     "expect.js": "^0.3.1",
     "glob-copy": "^0.1.0",
     "istanbul": "^0.3.19",
-    "jquery": "^2.1.4",
     "karma": "^0.13.9",
     "karma-browserify": "^4.3.0",
     "karma-chrome-launcher": "^0.2.0",
@@ -30,8 +31,7 @@
     "mocha": "^2.2.5",
     "rimraf": "^2.4.2",
     "typedoc": "^0.3.11",
-    "typescript": "^1.6.2",
-    "underscore": "^1.8.3"
+    "typescript": "^1.6.2"
   },
   "scripts": {
     "clean": "rimraf lib",
