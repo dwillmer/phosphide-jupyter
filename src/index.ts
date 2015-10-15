@@ -32,8 +32,16 @@ import {
 } from 'phosphor-disposable';
 
 import {
+  DockPanel
+} from 'phosphor-dockpanel';
+
+import {
   MenuItem
 } from 'phosphor-menus';
+
+import {
+  Tab
+} from 'phosphor-tabs';
 
 import {
   ResizeMessage, Widget, attachWidget
@@ -141,6 +149,9 @@ function newNotebook(): Notebook {
   }
   var notebook = new Notebook();
   notebook.start(kernelOptions);
+  var tab = new Tab('Notebook');
+  tab.closable = true;
+  DockPanel.setTab(notebook, tab);
   return notebook;
 }
 
