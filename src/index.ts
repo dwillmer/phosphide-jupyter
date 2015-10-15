@@ -149,10 +149,16 @@ function newNotebook(): Notebook {
   }
   var notebook = new Notebook();
   notebook.start(kernelOptions);
+  //var tab = new Tab('Notebook');
+  //tab.closable = true;
+  //DockPanel.setTab(notebook, tab);
+  return notebook;
+}
+
+function newTab(name: string): Tab {
   var tab = new Tab('Notebook');
   tab.closable = true;
-  DockPanel.setTab(notebook, tab);
-  return notebook;
+  return tab;
 }
 
 
@@ -187,7 +193,8 @@ class JupyterNotebookPlugin {
       },
       {
         pointName: 'dockarea.main',
-        item: newNotebook()
+        item: newNotebook(),
+        tab: newTab('Notebook')
       }
     ];
   }

@@ -15,7 +15,6 @@ var actions_1 = require('./actions');
 var codecell_1 = require('./codecell');
 var keyboardmanager_1 = require('./keyboardmanager');
 var tooltip_1 = require('./tooltip');
-var phosphor_dockpanel_1 = require('phosphor-dockpanel');
 var phosphor_menus_1 = require('phosphor-menus');
 var phosphor_tabs_1 = require('phosphor-tabs');
 var phosphor_widget_1 = require('phosphor-widget');
@@ -104,10 +103,15 @@ function newNotebook() {
     };
     var notebook = new Notebook();
     notebook.start(kernelOptions);
+    //var tab = new Tab('Notebook');
+    //tab.closable = true;
+    //DockPanel.setTab(notebook, tab);
+    return notebook;
+}
+function newTab(name) {
     var tab = new phosphor_tabs_1.Tab('Notebook');
     tab.closable = true;
-    phosphor_dockpanel_1.DockPanel.setTab(notebook, tab);
-    return notebook;
+    return tab;
 }
 var JUPYTER_MENU_TEMPLATE = [
     {
@@ -136,7 +140,8 @@ var JupyterNotebookPlugin = (function () {
             },
             {
                 pointName: 'dockarea.main',
-                item: newNotebook()
+                item: newNotebook(),
+                tab: newTab('Notebook')
             }
         ];
     };
