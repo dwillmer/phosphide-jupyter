@@ -37,7 +37,7 @@
     "build": "npm run build:src && npm run build:css",
     "docs": "rimraf docs/api && typedoc --options scripts/tdoptions.json",
     "prepublish": "npm run build",
-    "postinstall": "npm dedupe"
+    "postinstall": "npm dedupe && cd jupyter-js-services && npm install"
   },
   "repository": {
     "type": "git",
