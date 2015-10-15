@@ -43,7 +43,7 @@ import {
   startNewKernel, Contents
 } from '../jupyter-js-services/index';
 
-import './style.min.css';
+//import './style.min.css';
 import './ipython.min.css';
 import './index.css';
 

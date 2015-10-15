@@ -18,7 +18,7 @@ var tooltip_1 = require('./tooltip');
 var phosphor_menus_1 = require('phosphor-menus');
 var phosphor_widget_1 = require('phosphor-widget');
 var index_1 = require('../jupyter-js-services/index');
-require('./style.min.css');
+//import './style.min.css';
 require('./ipython.min.css');
 require('./index.css');
 /**
