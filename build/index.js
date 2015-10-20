@@ -15,7 +15,6 @@ var actions_1 = require('./actions');
 var codecell_1 = require('./codecell');
 var keyboardmanager_1 = require('./keyboardmanager');
 var tooltip_1 = require('./tooltip');
-var phosphor_menus_1 = require('phosphor-menus');
 var phosphor_tabs_1 = require('phosphor-tabs');
 var phosphor_widget_1 = require('phosphor-widget');
 var index_1 = require('../jupyter-js-services/index');
@@ -113,16 +112,179 @@ function newTab(name) {
     tab.closable = true;
     return tab;
 }
-var JUPYTER_MENU_TEMPLATE = [
+var MENU = [
     {
-        text: 'Jupyter',
-        submenu: [
-            {
-                text: 'New Notebook',
-                shortcut: 'Ctrl-N'
-            }
-        ]
-    }
+        "location": ["File", "New Notebook", "Python 3"],
+        "command": "dock.new.codepanel",
+        "short_desc": "Code Panel",
+        "long_desc": "Adds a new Dock item with a Codemirror widget."
+    },
+    {
+        "location": ["File", "New Notebook", "Julia"],
+        "command": "notebook.new.julia"
+    },
+    {
+        "location": ["File", "Open..."],
+        "command": "notebook.open",
+    },
+    {
+        "location": ["File", "Make a copy..."],
+        "command": "notebook.copy"
+    },
+    {
+        "location": ["File", "Rename..."],
+        "command": "notebook.rename"
+    },
+    {
+        "location": ["File", "Save and checkpoint"],
+        "command": "notebook.checkpoint.save"
+    },
+    {
+        "location": ["File", "Revert to Checkpoint"],
+        "command": "notebook.checkpoint.revert.<timestamp>"
+    },
+    {
+        "location": ["File", "Print Preview"],
+        "command": "notebook.print.preview"
+    },
+    {
+        "location": ["File", "Download as", "IPython notebook"],
+        "command": "notebook.download.as_ipynb"
+    },
+    {
+        "location": ["File", "Download as", "PDF"],
+        "command": "notebook.download.as_pdf"
+    },
+    {
+        "location": ["File", "Trusted Notebook"],
+        "command": "notebook.trusted"
+    },
+    {
+        "location": ["File", "Close and Halt"],
+        "command": "notebook.close_and_halt"
+    },
+    // Edit
+    //
+    {
+        "location": ["Edit", "Cut Cell"],
+        "command": "global.edit.cut_cell"
+    },
+    {
+        "location": ["Edit", "Copy Cell"],
+        "command": "global.edit.copy_cell"
+    },
+    {
+        "location": ["Edit", "Paste Cell Above"],
+        "command": "global.edit.paste_cell_above"
+    },
+    {
+        "location": ["Edit", "Paste Cell Below"],
+        "command": "global.edit.paste_cell_below"
+    },
+    {
+        "location": ["Edit", "Paste Cell & Replace"],
+        "command": "global.edit.paste_cell_replace"
+    },
+    {
+        "location": ["Edit", "Spit Cell"],
+        "command": "global.edit.split_cell"
+    },
+    {
+        "location": ["Edit", "Merge Cell Above"],
+        "command": "global.edit.merge_cell_above"
+    },
+    {
+        "location": ["Edit", "Merge Cell Below"],
+        "command": "global.edit.merge_cell_below"
+    },
+    {
+        "location": ["Edit", "Move Cell Up"],
+        "command": "global.edit.move_cell_up"
+    },
+    {
+        "location": ["Edit", "Move Cell Down"],
+        "command": "global.edit.move_cell_down"
+    },
+    {
+        "location": ["Edit", "Edit Notebook Metadata"],
+        "command": "global.edit.edit_metadata"
+    },
+    // View
+    //
+    {
+        "location": ["View", "Toggle Header"],
+        "command": "global.view.toggle_header"
+    },
+    {
+        "location": ["View", "Toggle Toolbar"],
+        "command": "global.view.toggle_toolbar"
+    },
+    // Cell
+    //
+    {
+        "location": ["Cell", "Run"],
+        "command": "cell.run",
+    },
+    {
+        "location": ["Cell", "Run and Select Below"],
+        "command": "cell.run_select_below"
+    },
+    {
+        "location": ["Cell", "Run and Insert below"],
+        "command": "cell.run_insert_below"
+    },
+    {
+        "location": ["Cell", "Run All"],
+        "command": "cell.run_all"
+    },
+    {
+        "location": ["Cell", "Run All Above"],
+        "command": "cell.run_all_above"
+    },
+    {
+        "location": ["Cell", "Run All Below"],
+        "command": "cell.run_all_below"
+    },
+    {
+        "location": ["Cell", "Cell Type", "Code"],
+        "command": "cell.type.code"
+    },
+    {
+        "location": ["Cell", "Cell Type", "Markdown"],
+        "command": "cell.type.markdown"
+    },
+    {
+        "location": ["Cell", "Cell Type", "Raw NBConvert"],
+        "command": "cell.type.nbconvert"
+    },
+    // Kernel
+    //
+    {
+        "location": ["Kernel", "Interrupt"],
+        "command": "global.kernel.interrupt"
+    },
+    {
+        "location": ["Kernel", "Restart"],
+        "command": "global.kernel.restart"
+    },
+    {
+        "location": ["Kernel", "Reconnect"],
+        "command": "global.kernel.reconnect"
+    },
+    {
+        "location": ["Kernel", "Change kernel", "Python 3"],
+        "command": "global.kernel.change.python_3"
+    },
+    {
+        "location": ["Kernel", "Change kernel", "Julia"],
+        "command": "global.kernel.change.julia"
+    },
+    // Help
+    //
+    {
+        "location": ["Help", "User Interface Tour"],
+        "command": "global.help.ui_tour"
+    },
 ];
 var JupyterNotebookPlugin = (function () {
     function JupyterNotebookPlugin(id) {
@@ -133,17 +295,19 @@ var JupyterNotebookPlugin = (function () {
         return [];
     };
     JupyterNotebookPlugin.prototype.extensions = function () {
-        return [
-            {
-                pointName: 'menu.main',
-                item: phosphor_menus_1.MenuItem.fromTemplate(JUPYTER_MENU_TEMPLATE)
-            },
-            {
-                pointName: 'dockarea.main',
-                item: newNotebook(),
-                tab: newTab('Notebook')
-            }
-        ];
+        var result = [];
+        for (var i = 0; i < MENU.length; ++i) {
+            result.push({
+                pointName: "menu.main",
+                item: MENU[i]
+            });
+        }
+        result.push({
+            pointName: 'dockarea.main',
+            item: newNotebook(),
+            tab: newTab('Notebook')
+        });
+        return result;
     };
     JupyterNotebookPlugin.prototype.load = function () {
         console.log('Loading jupyter notebook plugin');
