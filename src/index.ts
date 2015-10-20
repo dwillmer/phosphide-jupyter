@@ -28,6 +28,10 @@ import {
 } from 'phosphide';
 
 import {
+  Before, After
+} from 'phosphide-menu'; // TODO - remove dependency.
+
+import {
   IDisposable, DisposableDelegate
 } from 'phosphor-disposable';
 
@@ -175,6 +179,10 @@ var MENU = [
   {
     "location": ["File", "Open..."],
     "command": "notebook.open",
+    "constraints": {
+      "File": [new Before("Edit"), new Before("Cell"), new Before("View")],
+      "Open...": [new Before("Make a copy..."), new Before("Rename...")]
+    }
   },
   {
     "location": ["File", "Make a copy..."],
