@@ -128,7 +128,7 @@ var MENU = [
         "location": ["File", "Open..."],
         "command": "notebook.open",
         "constraints": {
-            "File": [new phosphide_menu_1.Before("Edit"), new phosphide_menu_1.Before("Cell"), new phosphide_menu_1.Before("View")],
+            "File": [new phosphide_menu_1.Before("Edit"), new phosphide_menu_1.Before("Cell"), new phosphide_menu_1.Before("View"), new phosphide_menu_1.Before('Help')],
             "Open...": [new phosphide_menu_1.Before("Make a copy..."), new phosphide_menu_1.Before("Rename...")]
         }
     },
@@ -266,7 +266,10 @@ var MENU = [
     //
     {
         "location": ["Kernel", "Interrupt"],
-        "command": "global.kernel.interrupt"
+        "command": "global.kernel.interrupt",
+        "constraints": {
+            "Interrupt": [new phosphide_menu_1.Before("Restart"), new phosphide_menu_1.Before("Reconnect")]
+        }
     },
     {
         "location": ["Kernel", "Restart"],

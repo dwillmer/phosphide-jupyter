@@ -180,7 +180,7 @@ var MENU = [
     "location": ["File", "Open..."],
     "command": "notebook.open",
     "constraints": {
-      "File": [new Before("Edit"), new Before("Cell"), new Before("View")],
+      "File": [new Before("Edit"), new Before("Cell"), new Before("View"), new Before('Help')],
       "Open...": [new Before("Make a copy..."), new Before("Rename...")]
     }
   },
@@ -319,7 +319,10 @@ var MENU = [
   //
   {
     "location": ["Kernel", "Interrupt"],
-    "command": "global.kernel.interrupt"
+    "command": "global.kernel.interrupt",
+    "constraints": {
+      "Interrupt": [new Before("Restart"), new Before("Reconnect")]
+    }
   },
   {
     "location": ["Kernel", "Restart"],
