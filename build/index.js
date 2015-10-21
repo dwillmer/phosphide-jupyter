@@ -15,7 +15,6 @@ var actions_1 = require('./actions');
 var codecell_1 = require('./codecell');
 var keyboardmanager_1 = require('./keyboardmanager');
 var tooltip_1 = require('./tooltip');
-var phosphide_menu_1 = require('phosphide-menu'); // TODO - remove dependency.
 var phosphor_tabs_1 = require('phosphor-tabs');
 var phosphor_widget_1 = require('phosphor-widget');
 var index_1 = require('../jupyter-js-services/index');
@@ -128,8 +127,8 @@ var MENU = [
         "location": ["File", "Open..."],
         "command": "notebook.open",
         "constraints": {
-            "File": [new phosphide_menu_1.Before("Edit"), new phosphide_menu_1.Before("Cell"), new phosphide_menu_1.Before("View"), new phosphide_menu_1.Before('Help')],
-            "Open...": [new phosphide_menu_1.Before("Make a copy..."), new phosphide_menu_1.Before("Rename...")]
+            "File": { before: ["Edit", "Cell", "View", "Help"] },
+            "Open...": { before: ["Make a copy...", "Rename..."] }
         }
     },
     {
@@ -268,7 +267,7 @@ var MENU = [
         "location": ["Kernel", "Interrupt"],
         "command": "global.kernel.interrupt",
         "constraints": {
-            "Interrupt": [new phosphide_menu_1.Before("Restart"), new phosphide_menu_1.Before("Reconnect")]
+            "Interrupt": { before: ["Restart", "Reconnect"] }
         }
     },
     {
