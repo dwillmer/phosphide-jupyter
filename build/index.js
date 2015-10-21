@@ -18,7 +18,6 @@ var tooltip_1 = require('./tooltip');
 var phosphor_tabs_1 = require('phosphor-tabs');
 var phosphor_widget_1 = require('phosphor-widget');
 var index_1 = require('../jupyter-js-services/index');
-//import './style.min.css';
 require('./ipython.min.css');
 require('./index.css');
 /**

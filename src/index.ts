@@ -36,10 +36,6 @@ import {
 } from 'phosphor-dockpanel';
 
 import {
-  MenuItem
-} from 'phosphor-menus';
-
-import {
   Tab
 } from 'phosphor-tabs';
 
@@ -51,7 +47,6 @@ import {
   startNewKernel, Contents
 } from '../jupyter-js-services/index';
 
-//import './style.min.css';
 import './ipython.min.css';
 import './index.css';
 
