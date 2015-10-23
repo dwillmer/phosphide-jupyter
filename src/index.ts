@@ -24,7 +24,7 @@ import {
 } from './tooltip';
 
 import {
-  IExtension, IExtensionPoint
+  IExtension
 } from 'phosphide';
 
 import {
@@ -341,50 +341,20 @@ var MENU = [
 
 
 
-export 
-class JupyterNotebookPlugin {
-  constructor(id: string) {
-    this.id = id;
-  }
+function loadDock(): Promise<any> {
+  return Promise.resolve({
+    items: [newNotebook()],
+    tabs: [newTab('Notebook')]
+  });
+}
 
-  extensionPoints(): IExtensionPoint[] {
-    return [];
-  }
 
-  extensions(): IExtension[] {
-    var result = [];
+function loadMenu(): Promise<any> {
+  return Promise.resolve({ items: MENU });
+}
 
-    for (var i=0; i < MENU.length; ++i) {
-      result.push({
-        pointName: "menu.main",
-        item: MENU[i]
-      });
-    }
 
-    result.push({
-      pointName: 'dockarea.main',
-      item: newNotebook(),
-      tab: newTab('Notebook')
-    });
-
-    return result;
-  }
-
-  load(): IDisposable {
-    console.log('Loading jupyter notebook plugin');
-    return;
-  }
-
-  unload(): void {
-    console.log('Unloading jupyter notebook plugin');
-  }
-
-  isRuntimeLoaded(): boolean {
-    return true;
-  }
-
-  id: string;
-  requires: string[] = ['mainmenu', 'dockarea'];
-
-  private _whatever;
+export
+function initialize(): IDisposable {
+  return void 0;
 }

@@ -292,40 +292,17 @@ var MENU = [
         "command": "global.help.ui_tour"
     },
 ];
-var JupyterNotebookPlugin = (function () {
-    function JupyterNotebookPlugin(id) {
-        this.requires = ['mainmenu', 'dockarea'];
-        this.id = id;
-    }
-    JupyterNotebookPlugin.prototype.extensionPoints = function () {
-        return [];
-    };
-    JupyterNotebookPlugin.prototype.extensions = function () {
-        var result = [];
-        for (var i = 0; i < MENU.length; ++i) {
-            result.push({
-                pointName: "menu.main",
-                item: MENU[i]
-            });
-        }
-        result.push({
-            pointName: 'dockarea.main',
-            item: newNotebook(),
-            tab: newTab('Notebook')
-        });
-        return result;
-    };
-    JupyterNotebookPlugin.prototype.load = function () {
-        console.log('Loading jupyter notebook plugin');
-        return;
-    };
-    JupyterNotebookPlugin.prototype.unload = function () {
-        console.log('Unloading jupyter notebook plugin');
-    };
-    JupyterNotebookPlugin.prototype.isRuntimeLoaded = function () {
-        return true;
-    };
-    return JupyterNotebookPlugin;
-})();
-exports.JupyterNotebookPlugin = JupyterNotebookPlugin;
+function loadDock() {
+    return Promise.resolve({
+        items: [newNotebook()],
+        tabs: [newTab('Notebook')]
+    });
+}
+function loadMenu() {
+    return Promise.resolve({ items: MENU });
+}
+function initialize() {
+    return void 0;
+}
+exports.initialize = initialize;
 //# sourceMappingURL=index.js.map

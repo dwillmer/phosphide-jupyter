@@ -1,4 +1,3 @@
-import { IExtension, IExtensionPoint } from 'phosphide';
 import { IDisposable } from 'phosphor-disposable';
 import { Widget } from 'phosphor-widget';
 /**
@@ -17,14 +16,4 @@ export declare class Notebook extends Widget {
     private _kernel;
     private _cells;
 }
-export declare class JupyterNotebookPlugin {
-    constructor(id: string);
-    extensionPoints(): IExtensionPoint[];
-    extensions(): IExtension[];
-    load(): IDisposable;
-    unload(): void;
-    isRuntimeLoaded(): boolean;
-    id: string;
-    requires: string[];
-    private _whatever;
-}
+export declare function initialize(): IDisposable;
