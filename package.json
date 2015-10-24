@@ -54,7 +54,11 @@
       {
         "point": "dockarea:items",
         "loader": "loadDock"
-      }
+      },
+       {
+        "point": "menu:items",
+        "loader": "loadMenu"
+      },     
     ]
   },
   "author": "Dave Willmer <dave.willmer@gmail.com>",
