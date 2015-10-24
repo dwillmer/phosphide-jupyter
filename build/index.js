@@ -298,9 +298,11 @@ function loadDock() {
         tabs: [newTab('Notebook')]
     });
 }
+exports.loadDock = loadDock;
 function loadMenu() {
     return Promise.resolve({ items: MENU });
 }
+exports.loadMenu = loadMenu;
 function initialize() {
     return void 0;
 }

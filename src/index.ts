@@ -340,7 +340,7 @@ var MENU = [
 ];
 
 
-
+export
 function loadDock(): Promise<any> {
   return Promise.resolve({
     items: [newNotebook()],
@@ -349,6 +349,7 @@ function loadDock(): Promise<any> {
 }
 
 
+export
 function loadMenu(): Promise<any> {
   return Promise.resolve({ items: MENU });
 }

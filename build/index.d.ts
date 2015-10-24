@@ -16,4 +16,6 @@ export declare class Notebook extends Widget {
     private _kernel;
     private _cells;
 }
+export declare function loadDock(): Promise<any>;
+export declare function loadMenu(): Promise<any>;
 export declare function initialize(): IDisposable;
